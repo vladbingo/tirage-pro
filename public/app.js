@@ -52,7 +52,7 @@ function confetti() {
   document.body.appendChild(c);
   const ctx = c.getContext('2d');
   c.width = innerWidth; c.height = innerHeight;
-  const colors = ['#f5c451', '#fff', '#b678ff', '#37d67a', '#ff5d5d'];
+  const colors = ['#f59e0b', '#6d28d9', '#fbbf24', '#a855f7', '#10b981', '#ffffff'];
   const ps = Array.from({ length: 140 }, () => ({
     x: Math.random() * c.width, y: -20 - Math.random() * c.height * 0.3,
     w: 6 + Math.random() * 6, h: 8 + Math.random() * 8,
@@ -84,7 +84,21 @@ function connectWS(campaignId, onMsg) {
 }
 
 /* ---------- ROUE ---------- */
-const WHEEL_COLORS = ['#f5c451', '#7b4fd6', '#e0a92e', '#5a379e', '#ffd97a', '#8f6ae0'];
+const WHEEL_COLORS = ['#f59e0b', '#6d28d9', '#fbbf24', '#7c3aed', '#fcd34d', '#4c1d95'];
+
+/* ---------- Icônes SVG ---------- */
+const IC = (p) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const ICONS = {
+  wheel: IC('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.2"/><path d="M12 3v5.8M12 15.2V21M3 12h5.8M15.2 12H21"/>'),
+  ticket: IC('<path d="M4 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1.5a2.5 2.5 0 0 0 0 5V16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-1.5a2.5 2.5 0 0 0 0-5V8z"/><path d="M13.5 7v1.8M13.5 11v1.8M13.5 14.6v1.8"/>'),
+  users: IC('<circle cx="9" cy="8" r="3.4"/><path d="M2.8 20c.7-3.4 3.2-5.4 6.2-5.4s5.5 2 6.2 5.4"/><circle cx="17" cy="9" r="2.6"/><path d="M16.4 14.4c2.6.7 4.4 2.7 4.8 5.1"/>'),
+  link: IC('<path d="M10 14a5 5 0 0 0 7.1 0l2.8-2.8a5 5 0 0 0-7.1-7.1l-1.6 1.6"/><path d="M14 10a5 5 0 0 0-7.1 0l-2.8 2.8a5 5 0 0 0 7.1 7.1l1.6-1.6"/>'),
+  trophy: IC('<path d="M8 4h8v4.5a4 4 0 0 1-8 0V4z"/><path d="M8 5.5H4.5A1.5 1.5 0 0 0 3 7c0 2.6 2 4.7 4.6 4.9M16 5.5h3.5A1.5 1.5 0 0 1 21 7c0 2.6-2 4.7-4.6 4.9M12 12.5V16M8.5 20h7M9.5 16.5h5"/>'),
+  store: IC('<path d="M4 9.5 5.2 4h13.6L20 9.5"/><path d="M4 9.5V20h16V9.5"/><path d="M4 9.5h16"/><path d="M9.5 20v-5.5h5V20"/>'),
+  gift: IC('<rect x="3.5" y="8" width="17" height="4" rx="1"/><path d="M5.5 12v8.5h13V12M12 8v12.5"/>'),
+  check: IC('<path d="M4.5 12.5l5 5L19.5 7"/>'),
+};
+const LOGO_SM = `<svg viewBox="0 0 48 48" fill="none" aria-hidden="true" style="width:40px;height:40px"><circle cx="24" cy="24" r="22" fill="#4c1d95"/><g><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#7c3aed"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#f59e0b" transform="rotate(60 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#8b5cf6" transform="rotate(120 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#fbbf24" transform="rotate(180 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#6d28d9" transform="rotate(240 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#fcd34d" transform="rotate(300 24 24)"/></g><circle cx="24" cy="24" r="7.5" fill="#fff"/><circle cx="24" cy="24" r="4" fill="#f59e0b"/></svg>`;
 function drawWheel(canvas, names, rotationDeg) {
   const ctx = canvas.getContext('2d');
   const S = canvas.width, cx = S / 2, cy = S / 2, R = S / 2 - 6;
@@ -103,14 +117,14 @@ function drawWheel(canvas, names, rotationDeg) {
     ctx.save(); ctx.translate(cx, cy); ctx.rotate(mid);
     ctx.textAlign = 'right'; ctx.fillStyle = i % 2 ? '#fff' : '#3a2503';
     const fs = n > 24 ? 11 : n > 12 ? 14 : 18;
-    ctx.font = `700 ${fs}px sans-serif`;
+    ctx.font = `700 ${fs}px "Plus Jakarta Sans", sans-serif`;
     const label = names[i].length > 14 ? names[i].slice(0, 13) + '…' : names[i];
     ctx.fillText(R - 14, fs / 3, label);
     ctx.restore();
   }
   // bordure
   ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2);
-  ctx.lineWidth = 8; ctx.strokeStyle = '#f5c451'; ctx.stroke();
+  ctx.lineWidth = 8; ctx.strokeStyle = '#f59e0b'; ctx.stroke();
 }
 // Anime la roue pour que le segment winnerIdx finisse sous le pointeur (en haut)
 function spinWheel(canvas, names, winnerIdx, durationMs, onDone) {
@@ -147,11 +161,12 @@ function initScratch(canvas, onRevealed) {
   const g = ctx.createLinearGradient(0, 0, W, H);
   g.addColorStop(0, '#d9d9e2'); g.addColorStop(0.5, '#a9a9b8'); g.addColorStop(1, '#c9c9d6');
   ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-  ctx.fillStyle = 'rgba(0,0,0,.25)';
-  ctx.font = '900 44px sans-serif'; ctx.textAlign = 'center';
-  ctx.fillText('GRATTEZ ICI', W / 2, H / 2 - 8);
-  ctx.font = '700 26px sans-serif';
-  ctx.fillText('🪙 🪙 🪙', W / 2, H / 2 + 44);
+  ctx.fillStyle = 'rgba(15,23,42,.28)';
+  ctx.font = '800 40px "Plus Jakarta Sans", sans-serif'; ctx.textAlign = 'center';
+  ctx.fillText('GRATTEZ ICI', W / 2, H / 2 - 12);
+  ctx.font = '600 24px "Plus Jakarta Sans", sans-serif';
+  ctx.fillStyle = 'rgba(15,23,42,.38)';
+  ctx.fillText('Gratte avec ton doigt', W / 2, H / 2 + 38);
   let done = false, moves = 0;
   function scratchAt(x, y) {
     const r = canvas.getBoundingClientRect();
@@ -231,7 +246,7 @@ async function vSetup() {
     try {
       const j = await api('/api/setup', { method: 'POST', body: JSON.stringify({ username: $('#setup-user').value.trim(), password: $('#setup-pass').value }) });
       localStorage.setItem('tp_token', j.token); localStorage.setItem('tp_user', JSON.stringify(j.user));
-      toast('Bienvenue, ' + j.user.username + ' 👑'); location.hash = '#/admin';
+      toast('Bienvenue, ' + j.user.username); location.hash = '#/admin';
     } catch (e) { $('#setup-err').textContent = e.message; }
   };
 }
@@ -260,6 +275,8 @@ let editingMerchant = null;
 async function vAdmin() {
   const me = needAuth('superadmin'); if (!me) return;
   show('#view-admin');
+  $('#admin-name').textContent = me.username;
+  $('#admin-av').textContent = (me.username || 'A').charAt(0).toUpperCase();
   $('#logout-btn').onclick = doLogout;
   $('#admin-pass-btn').onclick = askNewPassword;
   try {
@@ -272,12 +289,12 @@ async function vAdmin() {
       <div class="stat"><b>${stats.participants}</b><span>participants</span></div>
       <div class="stat"><b>${stats.ticketsIssued}</b><span>tickets pris</span></div>`;
     $('#merchant-list').innerHTML = mj.merchants.map(m => `
-      <div class="mcard"><h3>🏪 ${esc(m.merchantName)}</h3>
-        <div class="muted small">@${esc(m.username)}</div>
+      <div class="mcard"><h3>${ICONS.store}${esc(m.merchantName)}</h3>
+        <div class="sub">@${esc(m.username)}</div>
         <div style="margin:8px 0">
-          <span class="perm-dot ${m.perms.raffle ? 'on' : 'off'}"></span><small>Roue</small>
-          <span class="perm-dot ${m.perms.scratch ? 'on' : 'off'}" style="margin-left:10px"></span><small>Tickets</small>
-          <span class="badge ${m.active !== false ? 'open' : 'closed'}" style="margin-left:10px">${m.active !== false ? 'actif' : 'bloqué'}</span>
+          <span class="perm-line"><span class="perm-dot ${m.perms.raffle ? 'on' : 'off'}"></span>Roue</span>
+          <span class="perm-line"><span class="perm-dot ${m.perms.scratch ? 'on' : 'off'}"></span>Tickets</span>
+          <span class="badge ${m.active !== false ? 'open' : 'closed'}">${m.active !== false ? 'actif' : 'bloqué'}</span>
           <span class="badge dim">${m.perms.maxCampaigns} camp. max</span>
         </div>
         <div class="row">
@@ -286,17 +303,19 @@ async function vAdmin() {
           <button class="btn btn-danger sm" data-del="${m.id}">Supprimer</button>
         </div></div>`).join('') || `
       <div class="card guide">
-        <div style="font-size:44px">👋</div>
-        <h3 style="margin:10px 0 6px">Crée ton accès commerçant</h3>
-        <p class="muted" style="line-height:2">C'est avec le <b>compte commerçant</b> que tu lanceras tes tirages.<br>
-        1️⃣ Clique ci-dessous et crée ton accès<br>
-        2️⃣ Déconnecte-toi, puis reconnecte-toi avec cet accès<br>
-        3️⃣ Clique <b>🎡 Nouveau tirage</b> et lance ta roue !</p>
+        <div class="empty-icon">${ICONS.store}</div>
+        <h3>Crée ton accès commerçant</h3>
+        <p class="muted">C'est avec le <b>compte commerçant</b> que tu lanceras tes tirages.</p>
+        <div class="steps-mini">
+          <div><span class="n">1</span><span>Clique ci-dessous et crée ton accès commerçant</span></div>
+          <div><span class="n">2</span><span>Déconnecte-toi, puis reconnecte-toi avec cet accès</span></div>
+          <div><span class="n">3</span><span>Crée un tirage et lance ta roue en direct</span></div>
+        </div>
         <button class="btn btn-gold big" id="guide-new-merchant">+ Créer mon accès commerçant</button>
       </div>`;
     $('#admin-campaigns').innerHTML = cj.campaigns.map(c => `
-      <div class="mcard"><h3>${c.type === 'raffle' ? '🎡' : '🎫'} ${esc(c.title)}</h3>
-        <div class="muted small">${esc(c.merchantName)}</div>
+      <div class="mcard"><h3>${c.type === 'raffle' ? ICONS.wheel : ICONS.ticket}${esc(c.title)}</h3>
+        <div class="sub">${esc(c.merchantName)}</div>
         <span class="badge ${c.status}">${c.status === 'open' ? 'ouvert' : 'fermé'}</span>
         <span class="badge dim">${c.type === 'raffle' ? c.participants + ' participants' : (c.tickets ? c.tickets.issued + '/' + c.tickets.total + ' tickets' : '')}</span>
       </div>`).join('') || '<p class="muted">Aucune campagne.</p>';
@@ -370,7 +389,7 @@ async function vMerchant() {
     const { campaigns } = await api('/api/merchant/campaigns');
     $('#m-empty').classList.toggle('hidden', campaigns.length > 0);
     $('#m-campaigns').innerHTML = campaigns.map(c => `
-      <div class="mcard"><h3>${c.type === 'raffle' ? '🎡' : '🎫'} ${esc(c.title)}</h3>
+      <div class="mcard"><h3>${c.type === 'raffle' ? ICONS.wheel : ICONS.ticket}${esc(c.title)}</h3>
         <span class="badge ${c.status}">${c.status === 'open' ? 'ouvert' : 'fermé'}</span>
         <span class="badge type">${c.type === 'raffle' ? 'tirage' : 'tickets'}</span>
         <div class="muted small" style="margin-top:6px">${c.type === 'raffle'
@@ -394,7 +413,7 @@ function openCampModal(type) {
   campType = type;
   const m = $('#camp-modal'); m.classList.remove('hidden');
   $('#cm-err').textContent = '';
-  $('#cm-title').textContent = type === 'raffle' ? '🎡 Nouveau tirage au sort' : '🎫 Nouveaux tickets à gratter';
+  $('#cm-title').textContent = type === 'raffle' ? 'Nouveau tirage au sort' : 'Nouveaux tickets à gratter';
   const f = $('#cm-fields');
   if (type === 'raffle') {
     f.innerHTML = `
@@ -451,14 +470,14 @@ async function vCampDetail(id) {
   let c;
   try { c = (await api('/api/merchant/campaigns/' + id)).campaign; }
   catch (e) { body.innerHTML = `<p class="err">${esc(e.message)}</p>`; return; }
-  $('#cd-title').textContent = (c.type === 'raffle' ? '🎡 ' : '🎫 ') + c.title;
+  $('#cd-title').textContent = c.title;
 
   if (c.type === 'raffle') return renderRaffleDetail(c, body);
   return renderScratchDetail(c, body);
 }
 
 function shareBlock() {
-  return `<div class="sharebox"><b>🔗 Lien client</b>
+  return `<div class="sharebox"><b>${ICONS.link}Lien client</b>
     <input id="share-link" readonly onclick="this.select()">
     <div class="row" style="justify-content:center"><button class="btn btn-gold sm" id="share-copy">Copier le lien</button></div>
     <div id="share-qr"></div></div>`;
@@ -485,20 +504,21 @@ function renderRaffleDetail(c, body) {
       <p class="muted">${esc(c.description || '')}</p>
       <p><b>Lots :</b> ${c.prizes.map(esc).join(' · ')}</p></div>
     <div class="tabs">
-      <div class="tab active" data-tab="draw">🎡 Tirage</div>
-      <div class="tab" data-tab="parts">👥 Participants</div>
-      <div class="tab" data-tab="share">🔗 Partager</div>
+      <div class="tab active" data-tab="draw">${ICONS.wheel}Tirage</div>
+      <div class="tab" data-tab="parts">${ICONS.users}Participants</div>
+      <div class="tab" data-tab="share">${ICONS.link}Partager</div>
     </div>
-    <div id="tab-draw"><div class="card"><div class="wheel-zone">
-      ${c.participants.length === 0 ? `<div class="hint">👆 <b>Pour commencer :</b> va dans l'onglet <b>🔗 Partager</b>, envoie le lien à tes clients. Quand ils s'inscrivent, reviens ici et lance la roue !</div>` : ''}
-      <div class="wheel-wrap"><div class="wheel-pointer">🔻</div><canvas id="wheel" width="600" height="600"></canvas><div class="wheel-hub">🎡</div></div>
+    <div id="tab-draw"><div class="stage"><div class="wheel-zone">
+      ${c.participants.length === 0 ? `<div class="hint"><b>Pour commencer :</b> va dans l'onglet <b>Partager</b>, envoie le lien à tes clients. Quand ils s'inscrivent, reviens ici et lance la roue !</div>` : ''}
+      <h3>Roue du tirage</h3>
+      <div class="wheel-wrap"><div class="wheel-pointer"></div><canvas id="wheel" width="600" height="600"></canvas><div class="wheel-hub">${ICONS.wheel}</div></div>
       <div id="draw-result"></div>
       <div class="row" style="justify-content:center"><button class="btn btn-gold big" id="draw-btn">Lancer le tirage</button></div>
       <p class="muted small">La roue tourne en direct aussi sur les téléphones des clients.</p>
     </div></div></div>
     <div id="tab-parts" class="hidden"><div class="card"><h3>Participants</h3><div class="plist" id="parts-list"></div></div></div>
     <div id="tab-share" class="hidden"><div class="card">${shareBlock()}</div></div>
-    <div class="card"><h3>🏆 Gagnants</h3><div id="winners-list">${winnersHtml(c.winners)}</div></div>`;
+    <div class="card"><h3>Gagnants</h3><div id="winners-list">${winnersHtml(c.winners)}</div></div>`;
 
   $$('.tab', body).forEach(t => t.onclick = () => {
     $$('.tab', body).forEach(x => x.classList.remove('active')); t.classList.add('active');
@@ -507,7 +527,7 @@ function renderRaffleDetail(c, body) {
   });
   const paintParts = () => {
     $('#parts-list').innerHTML = c.participants.map((p, i) =>
-      `<div class="prow"><span>${i + 1}. ${esc(p.name)}</span><span class="muted small">${esc(p.phone || '')}</span></div>`).join('') || '<p class="muted">Aucun participant pour l\'instant.</p>';
+      `<div class="prow"><span><span class="rank">${i + 1}</span>${esc(p.name)}</span><span class="muted small">${esc(p.phone || '')}</span></div>`).join('') || '<p class="muted">Aucun participant pour l\'instant.</p>';
   };
   paintParts();
   fillShare(c.id);
@@ -533,11 +553,11 @@ function renderRaffleDetail(c, body) {
   function doSpin(msg) {
     const names = msg.order.map(o => o.name);
     $('#draw-btn').disabled = true;
-    $('#draw-result').innerHTML = '<p class="muted">🎡 La roue tourne…</p>';
+    $('#draw-result').innerHTML = '<p class="muted">La roue tourne…</p>';
     beep(400, 0.2, 0, 'triangle');
     spinWheel(canvas, names, msg.winnerIndexes[0], msg.duration, () => {
       const w = msg.results[0];
-      $('#draw-result').innerHTML = `<div class="winner-banner">🏆 <b>${esc(w.name)}</b> gagne : ${esc(w.prize)}</div>`;
+      $('#draw-result').innerHTML = `<div class="winner-banner"><div class="wt">${ICONS.trophy}Gagnant</div><b>${esc(w.name)}</b><div class="wp">remporte : ${esc(w.prize)}</div></div>`;
       fanfare(); confetti();
       c.winners.push(...msg.results.map(r => ({ ...r, at: Date.now() })));
       $('#winners-list').innerHTML = winnersHtml(c.winners);
@@ -553,7 +573,7 @@ function renderRaffleDetail(c, body) {
 }
 function winnersHtml(winners) {
   if (!winners || !winners.length) return '<p class="muted">Aucun gagnant tiré pour l\'instant.</p>';
-  return winners.map((w, i) => `<div class="prow"><span>🏆 ${esc(w.name)}</span><b style="color:var(--gold)">${esc(w.prize)}</b></div>`).join('');
+  return winners.map((w, i) => `<div class="prow"><span><span class="rank">${i + 1}</span>${esc(w.name)}</span><b style="color:var(--brand-ink)">${esc(w.prize)}</b></div>`).join('');
 }
 
 function renderScratchDetail(c, body) {
@@ -569,9 +589,9 @@ function renderScratchDetail(c, body) {
       </div>
       <p><b>Lots :</b></p>${c.prizes.map(p => `<div class="prow"><span>${esc(p.label)}</span><span class="muted">× ${p.qty}</span></div>`).join('')}
     </div>
-    <div class="card"><h3>🔗 Partager</h3>${shareBlock()}</div>
-    <div class="card"><h3>🎫 Derniers tickets</h3>
-      <div class="plist">${c.recentTickets.map(t => `<div class="prow"><span><b>${esc(t.code)}</b> — ${esc(t.by.name)}</span><span>${t.prize ? '🏆 ' + esc(t.prize) : t.revealed ? 'perdu' : 'non gratté'}</span></div>`).join('') || '<p class="muted">Aucun ticket pris.</p>'}</div></div>`;
+    <div class="card"><h3>Partager</h3>${shareBlock()}</div>
+    <div class="card"><h3>Derniers tickets</h3>
+      <div class="plist">${c.recentTickets.map(t => `<div class="prow"><span><b>${esc(t.code)}</b> — ${esc(t.by.name)}</span><span>${t.prize ? '<b style="color:var(--brand-ink)">Gagné : ' + esc(t.prize) + '</b>' : t.revealed ? 'perdu' : 'non gratté'}</span></div>`).join('') || '<p class="muted">Aucun ticket pris.</p>'}</div></div>`;
   fillShare(c.id);
   $('#cd-toggle').onclick = async () => {
     try { await api('/api/merchant/campaigns/' + c.id, { method: 'PATCH', body: JSON.stringify({ status: c.status === 'open' ? 'closed' : 'open' }) }); toast('Mis à jour'); vCampDetail(c.id); }
@@ -587,7 +607,8 @@ async function vPublic(id) {
   let c;
   try { c = (await api('/api/p/' + id)).campaign; }
   catch (e) { wrap.innerHTML = `<div class="card"><p class="err">${esc(e.message)}</p></div>`; return; }
-  $('#pub-emoji').textContent = c.type === 'raffle' ? '🎡' : '🎫';
+  $('#pub-brand').innerHTML = LOGO_SM + '<span>Tirage<em>Pro</em></span>';
+  $('#pub-brand').classList.add('brand');
   $('#pub-title').textContent = c.title;
   $('#pub-merchant').textContent = 'par ' + c.merchantName;
   $('#pub-desc').textContent = c.description || '';
@@ -605,7 +626,7 @@ function renderPublicRaffle(c, wrap) {
       <p><b>À gagner :</b> ${c.prizes.map(esc).join(' · ')}</p>
     </div>
     <div class="card" id="join-card" style="${joined || c.status !== 'open' ? 'display:none' : ''}">
-      <h3>🎟️ Participer</h3>
+      <h3>Participer</h3>
       <label>Ton nom<input id="j-name" placeholder="ex : Marie"></label>
       ${c.requirePhone ? '<label>Ton téléphone<input id="j-phone" inputmode="tel" placeholder="ex : 514-555-1234"></label>' : ''}
       <button class="btn btn-gold big" id="j-btn">Je participe !</button>
@@ -614,12 +635,12 @@ function renderPublicRaffle(c, wrap) {
     <div class="card hidden" id="joined-ok" style="text-align:center;${joined ? '' : 'display:none'}">
       <h3>✔ Tu es inscrit(e) !</h3><p class="muted">Reste ici : la roue tourne en direct.</p>
     </div>
-    <div class="card"><div class="wheel-zone">
-      <h3>🎡 Roue en direct</h3>
-      <div class="wheel-wrap"><div class="wheel-pointer">🔻</div><canvas id="wheel" width="600" height="600"></canvas><div class="wheel-hub">🎡</div></div>
+    <div class="stage"><div class="wheel-zone">
+      <h3>Roue en direct</h3>
+      <div class="wheel-wrap"><div class="wheel-pointer"></div><canvas id="wheel" width="600" height="600"></canvas><div class="wheel-hub">${ICONS.wheel}</div></div>
       <div id="pub-spin-msg"></div>
     </div></div>
-    <div class="card"><h3>🏆 Gagnants</h3><div id="pub-winners">${winnersHtml(c.winners)}</div></div>`;
+    <div class="card"><h3>Gagnants</h3><div id="pub-winners">${winnersHtml(c.winners)}</div></div>`;
 
   if (joined) { $('#join-card').style.display = 'none'; $('#joined-ok').classList.remove('hidden'); }
   const canvas = $('#wheel');
@@ -635,10 +656,10 @@ function renderPublicRaffle(c, wrap) {
     if (msg.t === 'closed') { toast('Campagne mise à jour'); vPublic(c.id); }
     if (msg.t === 'spin') {
       names = msg.order.map(o => o.name);
-      $('#pub-spin-msg').innerHTML = '<p class="muted">🎡 Tirage en cours…</p>';
+      $('#pub-spin-msg').innerHTML = '<p class="muted">Tirage en cours…</p>';
       spinWheel(canvas, names, msg.winnerIndexes[0], msg.duration, () => {
         const w = msg.results[0];
-        $('#pub-spin-msg').innerHTML = `<div class="winner-banner">🏆 <b>${esc(w.name)}</b> gagne : ${esc(w.prize)}</div>`;
+        $('#pub-spin-msg').innerHTML = `<div class="winner-banner"><div class="wt">${ICONS.trophy}Gagnant</div><b>${esc(w.name)}</b><div class="wp">remporte : ${esc(w.prize)}</div></div>`;
         fanfare(); confetti();
       });
     }
@@ -655,7 +676,7 @@ function renderPublicRaffle(c, wrap) {
       localStorage.setItem('tp_joined_' + c.id, '1');
       $('#join-card').style.display = 'none'; $('#joined-ok').classList.remove('hidden');
       const el = $('#pub-count'); if (el) el.textContent = parseInt(el.textContent, 10) + 1;
-      fanfare(); toast('Inscription confirmée 🍀');
+      fanfare(); toast('Inscription confirmée');
     } catch (e) { $('#j-err').textContent = e.message; }
   };
 }
@@ -673,7 +694,7 @@ function renderPublicScratch(c, wrap) {
   const area = $('#scratch-area');
   if (c.status !== 'open') { area.innerHTML = '<div class="card"><p class="muted" style="text-align:center">Cette campagne est terminée.</p></div>'; return; }
   if (saved) return showScratchCard(area, c, saved);
-  area.innerHTML = `<div class="card"><h3>🎫 Obtenir mon ticket</h3>
+  area.innerHTML = `<div class="card"><h3>Obtenir mon ticket</h3>
     <label>Ton nom<input id="s-name" placeholder="ex : Marie"></label>
     ${c.requirePhone ? '<label>Ton téléphone<input id="s-phone" inputmode="tel" placeholder="ex : 514-555-1234"></label>' : ''}
     <p class="muted small">Limite : ${c.perClient} ticket(s) par personne.</p>
@@ -693,20 +714,20 @@ function renderPublicScratch(c, wrap) {
 }
 
 function showScratchCard(area, c, t) {
-  area.innerHTML = `<div class="card scratch-zone"><h3>🎫 Ton ticket</h3>
+  area.innerHTML = `<div class="card scratch-zone"><h3>Ton ticket</h3>
     <div class="ticket-code">N° ${esc(t.code)}</div>
     <div class="scratch-wrap"><div class="scratch-under" id="su"><span class="muted">Gratte pour découvrir…</span></div>
     <canvas id="scratch-canvas"></canvas></div>
-    <p class="muted small">Gratte avec ton doigt 👆</p></div>`;
+    <p class="muted small">Gratte avec ton doigt sur la zone argentée</p></div>`;
   initScratch($('#scratch-canvas'), async () => {
     try {
       const j = await api(`/api/p/${c.id}/ticket/${t.ticketId}/reveal`, { method: 'POST' });
       const su = $('#su');
       if (j.prize) {
-        su.innerHTML = `<span>🎉 TU GAGNES</span><div class="prize">${esc(j.prize)}</div><span class="muted small">Montre ce ticket au commerçant</span>`;
+        su.innerHTML = `<span class="win-tag">Tu gagnes</span><div class="prize">${esc(j.prize)}</div><span class="muted small">Montre ce ticket au commerçant</span>`;
         fanfare(); confetti();
       } else {
-        su.innerHTML = `<span class="lose">😅 Perdu…<br>retente ta chance !</span>`;
+        su.innerHTML = `<span class="lose">Perdu…<br>retente ta chance !</span>`;
         beep(220, 0.3, 0, 'sawtooth');
       }
     } catch (e) { $('#su').innerHTML = `<span class="err">${esc(e.message)}</span>`; }

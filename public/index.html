@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>TiragePro — Tirages & tickets à gratter pour commerçants</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='22' fill='%236d28d9'/%3E%3Ccircle cx='24' cy='24' r='8' fill='%23f59e0b'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -12,68 +16,77 @@
   <!-- ===== ACCUEIL ===== -->
   <section id="view-home" class="view">
     <div class="hero">
-      <div class="logo">🎡</div>
-      <h1>Tirage<span>Pro</span></h1>
-      <p class="tagline">Tirages au sort & tickets à gratter pour booster ton commerce</p>
+      <div class="pill"><span class="dot"></span>Plateforme pour commerçants</div>
+      <div class="brand" aria-label="TiragePro">
+        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#4c1d95"/><g><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#7c3aed"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#f59e0b" transform="rotate(60 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#8b5cf6" transform="rotate(120 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#fbbf24" transform="rotate(180 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#6d28d9" transform="rotate(240 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#fcd34d" transform="rotate(300 24 24)"/></g><circle cx="24" cy="24" r="22" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/><circle cx="24" cy="24" r="7.5" fill="#fff"/><circle cx="24" cy="24" r="4" fill="#f59e0b"/></svg>
+        <span>Tirage<em>Pro</em></span>
+      </div>
+      <h1>Des jeux qui font <span class="grad">tourner</span> ton commerce</h1>
+      <p class="tagline">Tirages au sort et tickets à gratter pour fidéliser tes clients et booster tes ventes — simple, en direct, sur mobile.</p>
       <div class="home-actions">
         <button class="btn btn-gold big" data-go="#/login">Espace commerçant</button>
-        <button class="btn btn-ghost" data-go="#/login">Administration</button>
+        <button class="btn btn-ghost big" data-go="#/login">Administration</button>
       </div>
     </div>
     <div class="how">
       <h2>Comment ça marche ?</h2>
       <div class="steps">
-        <div class="step"><div class="step-n">1</div><b>Le commerçant crée</b><span>un tirage ou des tickets à gratter, avec ses propres lots</span></div>
-        <div class="step"><div class="step-n">2</div><b>Il partage</b><span>un lien ou un QR code, en magasin ou en ligne</span></div>
-        <div class="step"><div class="step-n">3</div><b>Les clients jouent</b><span>sur leur téléphone : roue en direct, ticket à gratter</span></div>
+        <div class="step"><div class="step-n">1</div><b>Crée ta campagne</b><span>Un tirage avec roue ou des tickets à gratter, avec tes propres lots.</span></div>
+        <div class="step"><div class="step-n">2</div><b>Partage le lien</b><span>QR code en magasin ou lien en ligne : tes clients participent sur leur téléphone.</span></div>
+        <div class="step"><div class="step-n">3</div><b>Lance le jeu en direct</b><span>La roue tourne en même temps sur ton écran et celui de tes clients.</span></div>
       </div>
     </div>
-    <footer class="foot">TiragePro — la promo qui fait tourner les clients</footer>
+    <footer class="foot">TiragePro — la promotion qui fait tourner les clients</footer>
   </section>
 
   <!-- ===== SETUP SUPER-ADMIN (1ère fois) ===== -->
   <section id="view-setup" class="view hidden">
-    <div class="card narrow">
-      <h2>👑 Création du compte principal</div></h2>
+    <div class="card narrow hi">
+      <div class="brand" style="margin-bottom:6px"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#4c1d95"/><g><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#7c3aed"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#f59e0b" transform="rotate(60 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#8b5cf6" transform="rotate(120 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#fbbf24" transform="rotate(180 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#6d28d9" transform="rotate(240 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#fcd34d" transform="rotate(300 24 24)"/></g><circle cx="24" cy="24" r="7.5" fill="#fff"/><circle cx="24" cy="24" r="4" fill="#f59e0b"/></svg><span>Tirage<em>Pro</em></span></div>
+      <h2>Création du compte principal</h2>
       <p class="muted">Premier lancement : crée ton compte administrateur. C'est toi qui donneras ensuite les accès aux commerçants.</p>
       <label>Nom d'utilisateur<input id="setup-user" autocomplete="username" placeholder="ex : vlad"></label>
-      <label>Mot de passe<input id="setup-pass" type="password" autocomplete="new-password" placeholder="6 caractères min"></label>
-      <button class="btn btn-gold big" id="setup-btn">Créer mon compte</button>
+      <label>Mot de passe<input id="setup-pass" type="password" autocomplete="new-password" placeholder="6 caractères minimum"></label>
+      <button class="btn btn-gold big" id="setup-btn" style="width:100%">Créer mon compte</button>
       <p class="err" id="setup-err"></p>
     </div>
   </section>
 
   <!-- ===== LOGIN ===== -->
   <section id="view-login" class="view hidden">
-    <div class="card narrow">
-      <h2>🔐 Connexion</h2>
-      <label>Identifiant<input id="login-user" autocomplete="username"></label>
-      <label>Mot de passe<input id="login-pass" type="password" autocomplete="current-password"></label>
-      <button class="btn btn-gold big" id="login-btn">Se connecter</button>
+    <div class="card narrow hi">
+      <div class="brand" style="margin-bottom:6px"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#4c1d95"/><g><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#7c3aed"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#f59e0b" transform="rotate(60 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#8b5cf6" transform="rotate(120 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#fbbf24" transform="rotate(180 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#6d28d9" transform="rotate(240 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#fcd34d" transform="rotate(300 24 24)"/></g><circle cx="24" cy="24" r="7.5" fill="#fff"/><circle cx="24" cy="24" r="4" fill="#f59e0b"/></svg><span>Tirage<em>Pro</em></span></div>
+      <h2>Connexion</h2>
+      <label>Identifiant<input id="login-user" autocomplete="username" placeholder="Ton identifiant"></label>
+      <label>Mot de passe<input id="login-pass" type="password" autocomplete="current-password" placeholder="Ton mot de passe"></label>
+      <button class="btn btn-gold big" id="login-btn" style="width:100%">Se connecter</button>
       <p class="err" id="login-err"></p>
-      <p class="muted small"><a href="#/">← retour</a></p>
+      <p class="muted small"><a href="#/">← Retour à l'accueil</a></p>
     </div>
   </section>
 
   <!-- ===== SUPER-ADMIN ===== -->
   <section id="view-admin" class="view hidden">
-    <header class="topbar"><b>👑 TiragePro — Admin</b><div><button class="btn btn-ghost sm" id="admin-pass-btn">Mot de passe</button> <button class="btn btn-ghost sm" id="logout-btn">Déconnexion</button></div></header>
+    <header class="topbar">
+      <div class="brand"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#4c1d95"/><g><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#7c3aed"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#f59e0b" transform="rotate(60 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#8b5cf6" transform="rotate(120 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#fbbf24" transform="rotate(180 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#6d28d9" transform="rotate(240 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#fcd34d" transform="rotate(300 24 24)"/></g><circle cx="24" cy="24" r="7.5" fill="#fff"/><circle cx="24" cy="24" r="4" fill="#f59e0b"/></svg><span>Administration</span></div>
+      <div class="tb-actions"><span class="userchip"><span class="av" id="admin-av">A</span><span class="uname" id="admin-name"></span></span><button class="btn btn-ghost sm" id="admin-pass-btn">Mot de passe</button><button class="btn btn-ghost sm" id="logout-btn">Déconnexion</button></div>
+    </header>
     <div class="wrap">
       <div class="stats" id="admin-stats"></div>
-      <div class="panel-head"><h2>Commerçants</h2><button class="btn btn-gold" id="merchant-new-btn">+ Nouveau commerçant</button></div>
+      <div class="panel-head"><h2>Commerçants</h2><div class="actions"><button class="btn btn-gold" id="merchant-new-btn">+ Nouveau commerçant</button></div></div>
       <div id="merchant-list" class="cards"></div>
-      <h2>Toutes les campagnes</h2>
+      <div class="panel-head"><h2>Toutes les campagnes</h2></div>
       <div id="admin-campaigns" class="cards"></div>
     </div>
     <div id="merchant-modal" class="modal hidden"><div class="card narrow">
       <h3 id="mm-title">Nouveau commerçant</h3>
       <label>Nom du commerce<input id="mm-name" placeholder="ex : Boulangerie du coin"></label>
       <label>Identifiant<input id="mm-user" placeholder="ex : boulangerie"></label>
-      <label>Mot de passe<input id="mm-pass" placeholder="6 caractères min"></label>
+      <label>Mot de passe<input id="mm-pass" placeholder="6 caractères minimum"></label>
       <div class="perms">
         <label class="chk"><input type="checkbox" id="mm-raffle" checked> Tirages au sort (roue)</label>
         <label class="chk"><input type="checkbox" id="mm-scratch" checked> Tickets à gratter</label>
-        <label>Nb max de campagnes <input type="number" id="mm-max" value="10" min="1" max="100"></label>
+        <label>Nombre max de campagnes <input type="number" id="mm-max" value="10" min="1" max="100"></label>
       </div>
       <div class="row"><button class="btn btn-gold" id="mm-save">Enregistrer</button><button class="btn btn-ghost" id="mm-cancel">Annuler</button></div>
       <p class="err" id="mm-err"></p>
@@ -82,43 +95,46 @@
 
   <!-- ===== COMMERÇANT : tableau de bord ===== -->
   <section id="view-merchant" class="view hidden">
-    <header class="topbar"><b>🏪 <span id="m-shopname"></span></b><div><button class="btn btn-ghost sm" id="m-pass-btn">Mot de passe</button> <button class="btn btn-ghost sm" id="m-logout-btn">Déconnexion</button></div></header>
+    <header class="topbar">
+      <div class="brand"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#4c1d95"/><g><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#7c3aed"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#f59e0b" transform="rotate(60 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#8b5cf6" transform="rotate(120 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#fbbf24" transform="rotate(180 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#6d28d9" transform="rotate(240 24 24)"/><path d="M24 24L24 4A20 20 0 0 1 41.3 14Z" fill="#fcd34d" transform="rotate(300 24 24)"/></g><circle cx="24" cy="24" r="7.5" fill="#fff"/><circle cx="24" cy="24" r="4" fill="#f59e0b"/></svg><span id="m-shopname">Mon commerce</span></div>
+      <div class="tb-actions"><button class="btn btn-ghost sm" id="m-pass-btn">Mot de passe</button><button class="btn btn-ghost sm" id="m-logout-btn">Déconnexion</button></div>
+    </header>
     <div class="wrap">
-      <div class="panel-head"><h2>Mes campagnes</h2><div>
-        <button class="btn btn-gold" id="new-raffle-btn">🎡 Nouveau tirage</button>
-        <button class="btn btn-gold" id="new-scratch-btn">🎫 Tickets à gratter</button>
+      <div class="panel-head"><h2>Mes campagnes</h2><div class="actions">
+        <button class="btn btn-gold" id="new-raffle-btn">Nouveau tirage</button>
+        <button class="btn btn-ghost" id="new-scratch-btn">Tickets à gratter</button>
       </div></div>
       <div id="m-campaigns" class="cards"></div>
       <div id="m-empty" class="empty hidden">
-        <div style="font-size:44px">🚀</div>
-        <h3 style="margin:10px 0 6px">Bienvenue ! Lance ton premier tirage</h3>
-        <p class="muted" style="line-height:2">1️⃣ Clique <b>🎡 Nouveau tirage</b> (ou <b>🎫 Tickets à gratter</b>) en haut<br>2️⃣ Ouvre ta campagne et partage le lien à tes clients<br>3️⃣ Reviens ici et lance la roue en direct 🎡</p>
+        <div class="empty-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.2"/><path d="M12 3v5.8M12 15.2V21M3 12h5.8M15.2 12H21"/></svg></div>
+        <h3>Bienvenue ! Lance ton premier tirage</h3>
+        <p>Crée un tirage avec roue ou des tickets à gratter, partage le lien à tes clients, puis lance le jeu en direct.</p>
       </div>
     </div>
     <div id="camp-modal" class="modal hidden"><div class="card narrow wide">
       <h3 id="cm-title">Nouveau tirage</h3>
       <div id="cm-fields"></div>
-      <div class="row"><button class="btn btn-gold" id="cm-save">Créer</button><button class="btn btn-ghost" id="cm-cancel">Annuler</button></div>
+      <div class="row"><button class="btn btn-gold" id="cm-save">Créer la campagne</button><button class="btn btn-ghost" id="cm-cancel">Annuler</button></div>
       <p class="err" id="cm-err"></p>
     </div></div>
   </section>
 
   <!-- ===== COMMERÇANT : détail campagne ===== -->
   <section id="view-campdetail" class="view hidden">
-    <header class="topbar"><button class="btn btn-ghost sm" data-go="#/m">← Mes campagnes</button><b id="cd-title"></b><span></span></header>
+    <header class="topbar"><div class="tb-actions"><button class="btn btn-ghost sm" data-go="#/m">← Mes campagnes</button></div><div class="tb-title" id="cd-title"></div><div style="width:120px"></div></header>
     <div class="wrap" id="cd-body"></div>
   </section>
 
   <!-- ===== PUBLIC : page campagne ===== -->
   <section id="view-public" class="view hidden">
     <div class="hero small">
-      <div class="logo" id="pub-emoji">🎡</div>
+      <div class="brand" id="pub-brand" style="justify-content:center"></div>
       <h1 id="pub-title"></h1>
-      <p class="tagline" id="pub-merchant"></p>
+      <p class="tagline" id="pub-merchant" style="margin-bottom:.2em"></p>
       <p id="pub-desc" class="pub-desc"></p>
     </div>
     <div class="wrap" id="pub-body"></div>
-    <footer class="foot">Propulsé par TiragePro 🎡</footer>
+    <footer class="foot">Propulsé par TiragePro</footer>
   </section>
 
 </div>
