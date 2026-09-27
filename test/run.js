@@ -126,6 +126,7 @@ describe('public : inscription & tirage roue', () => {
     const r = await req('GET', '/api/p/' + raffleId);
     assert.equal(r.body.campaign.title, 'Grand tirage');
     assert.ok(!('participants' in r.body.campaign) || r.body.campaign.participants === 0);
+    assert.ok(Array.isArray(r.body.campaign.names), 'noms pour la roue publique');
   });
   it('inscription : nom requis, anti-doublon', async () => {
     const a = await req('POST', '/api/p/' + raffleId + '/join', { name: '' });

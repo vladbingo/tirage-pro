@@ -611,12 +611,15 @@ function renderPublicRaffle(c, wrap) {
 
   if (joined) { $('#join-card').style.display = 'none'; $('#joined-ok').classList.remove('hidden'); }
   const canvas = $('#wheel');
-  let names = [];
+  let names = (c.names && c.names.length ? c.names : []);
   const paint = () => drawWheel(canvas, names.length ? names : ['Bonne chance !'], canvas._rot || 0);
   paint();
-  // Noms pour la roue publique : on récupère via le détail (noms seulement via spin). En attendant, roue générique.
   connectWS(c.id, (msg) => {
-    if (msg.t === 'joined') { const el = $('#pub-count'); if (el) el.textContent = msg.count; }
+    if (msg.t === 'joined') {
+      const el = $('#pub-count'); if (el) el.textContent = msg.count;
+      // Recharge les noms pour afficher tout le monde sur la roue
+      api('/api/p/' + c.id).then(j => { names = j.campaign.names || []; paint(); }).catch(() => {});
+    }
     if (msg.t === 'closed') { toast('Campagne mise à jour'); vPublic(c.id); }
     if (msg.t === 'spin') {
       names = msg.order.map(o => o.name);

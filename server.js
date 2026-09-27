@@ -392,6 +392,7 @@ function publicCampaign(c, req) {
     base.prizes = c.prizes;
     base.requirePhone = c.requirePhone;
     base.drawing = !!c.drawing;
+    base.names = (c.participants || []).map(p => p.name);
   } else {
     base.prizes = c.prizes.map(p => p.label);
     const total = data.tickets.filter(t => t.campaignId === c.id).length;
