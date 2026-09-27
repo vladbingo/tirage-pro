@@ -140,3 +140,5 @@ table.merchant th{color:var(--muted); font-weight:600;}
 .perm-dot{display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:4px;}
 .perm-dot.on{background:var(--green);} .perm-dot.off{background:rgba(255,255,255,.2);}
 @media(max-width:560px){ .topbar b{font-size:.92em;} .btn.big{width:100%;} }
+.hint{background:rgba(255,200,60,.12); border:1px solid var(--gold); border-radius:12px;
+  padding:12px 16px; margin:0 0 14px; font-size:.95em; line-height:1.6; text-align:center;}

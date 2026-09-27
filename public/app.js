@@ -479,6 +479,7 @@ function renderRaffleDetail(c, body) {
       <div class="tab" data-tab="share">🔗 Partager</div>
     </div>
     <div id="tab-draw"><div class="card"><div class="wheel-zone">
+      ${c.participants.length === 0 ? `<div class="hint">👆 <b>Pour commencer :</b> va dans l'onglet <b>🔗 Partager</b>, envoie le lien à tes clients. Quand ils s'inscrivent, reviens ici et lance la roue !</div>` : ''}
       <div class="wheel-wrap"><div class="wheel-pointer">🔻</div><canvas id="wheel" width="600" height="600"></canvas><div class="wheel-hub">🎡</div></div>
       <div id="draw-result"></div>
       <div class="row" style="justify-content:center"><button class="btn btn-gold big" id="draw-btn">Lancer le tirage</button></div>

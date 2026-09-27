@@ -213,4 +213,9 @@ describe('divers', () => {
     const r = await req('GET', '/health');
     assert.equal(r.body.ok, true);
   });
+  it('page d’accueil : guide de démarrage visible', async () => {
+    const r = await fetch(base + '/');
+    const html = await r.text();
+    assert.ok(html.includes('Lance ton premier tirage'), 'guide commerçant présent');
+  });
 });
