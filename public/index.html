@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>TiragePro — Tirages & tickets à gratter pour commerçants</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ===== ACCUEIL ===== -->
+  <section id="view-home" class="view">
+    <div class="hero">
+      <div class="logo">🎡</div>
+      <h1>Tirage<span>Pro</span></h1>
+      <p class="tagline">Tirages au sort & tickets à gratter pour booster ton commerce</p>
+      <div class="home-actions">
+        <button class="btn btn-gold big" data-go="#/login">Espace commerçant</button>
+        <button class="btn btn-ghost" data-go="#/login">Administration</button>
+      </div>
+    </div>
+    <div class="how">
+      <h2>Comment ça marche ?</h2>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><b>Le commerçant crée</b><span>un tirage ou des tickets à gratter, avec ses propres lots</span></div>
+        <div class="step"><div class="step-n">2</div><b>Il partage</b><span>un lien ou un QR code, en magasin ou en ligne</span></div>
+        <div class="step"><div class="step-n">3</div><b>Les clients jouent</b><span>sur leur téléphone : roue en direct, ticket à gratter</span></div>
+      </div>
+    </div>
+    <footer class="foot">TiragePro — la promo qui fait tourner les clients</footer>
+  </section>
+
+  <!-- ===== SETUP SUPER-ADMIN (1ère fois) ===== -->
+  <section id="view-setup" class="view hidden">
+    <div class="card narrow">
+      <h2>👑 Création du compte principal</div></h2>
+      <p class="muted">Premier lancement : crée ton compte administrateur. C'est toi qui donneras ensuite les accès aux commerçants.</p>
+      <label>Nom d'utilisateur<input id="setup-user" autocomplete="username" placeholder="ex : vlad"></label>
+      <label>Mot de passe<input id="setup-pass" type="password" autocomplete="new-password" placeholder="6 caractères min"></label>
+      <button class="btn btn-gold big" id="setup-btn">Créer mon compte</button>
+      <p class="err" id="setup-err"></p>
+    </div>
+  </section>
+
+  <!-- ===== LOGIN ===== -->
+  <section id="view-login" class="view hidden">
+    <div class="card narrow">
+      <h2>🔐 Connexion</h2>
+      <label>Identifiant<input id="login-user" autocomplete="username"></label>
+      <label>Mot de passe<input id="login-pass" type="password" autocomplete="current-password"></label>
+      <button class="btn btn-gold big" id="login-btn">Se connecter</button>
+      <p class="err" id="login-err"></p>
+      <p class="muted small"><a href="#/">← retour</a></p>
+    </div>
+  </section>
+
+  <!-- ===== SUPER-ADMIN ===== -->
+  <section id="view-admin" class="view hidden">
+    <header class="topbar"><b>👑 TiragePro — Admin</b><div><button class="btn btn-ghost sm" id="admin-pass-btn">Mot de passe</button> <button class="btn btn-ghost sm" id="logout-btn">Déconnexion</button></div></header>
+    <div class="wrap">
+      <div class="stats" id="admin-stats"></div>
+      <div class="panel-head"><h2>Commerçants</h2><button class="btn btn-gold" id="merchant-new-btn">+ Nouveau commerçant</button></div>
+      <div id="merchant-list" class="cards"></div>
+      <h2>Toutes les campagnes</h2>
+      <div id="admin-campaigns" class="cards"></div>
+    </div>
+    <div id="merchant-modal" class="modal hidden"><div class="card narrow">
+      <h3 id="mm-title">Nouveau commerçant</h3>
+      <label>Nom du commerce<input id="mm-name" placeholder="ex : Boulangerie du coin"></label>
+      <label>Identifiant<input id="mm-user" placeholder="ex : boulangerie"></label>
+      <label>Mot de passe<input id="mm-pass" placeholder="6 caractères min"></label>
+      <div class="perms">
+        <label class="chk"><input type="checkbox" id="mm-raffle" checked> Tirages au sort (roue)</label>
+        <label class="chk"><input type="checkbox" id="mm-scratch" checked> Tickets à gratter</label>
+        <label>Nb max de campagnes <input type="number" id="mm-max" value="10" min="1" max="100"></label>
+      </div>
+      <div class="row"><button class="btn btn-gold" id="mm-save">Enregistrer</button><button class="btn btn-ghost" id="mm-cancel">Annuler</button></div>
+      <p class="err" id="mm-err"></p>
+    </div></div>
+  </section>
+
+  <!-- ===== COMMERÇANT : tableau de bord ===== -->
+  <section id="view-merchant" class="view hidden">
+    <header class="topbar"><b>🏪 <span id="m-shopname"></span></b><div><button class="btn btn-ghost sm" id="m-pass-btn">Mot de passe</button> <button class="btn btn-ghost sm" id="m-logout-btn">Déconnexion</button></div></header>
+    <div class="wrap">
+      <div class="panel-head"><h2>Mes campagnes</h2><div>
+        <button class="btn btn-gold" id="new-raffle-btn">🎡 Nouveau tirage</button>
+        <button class="btn btn-gold" id="new-scratch-btn">🎫 Tickets à gratter</button>
+      </div></div>
+      <div id="m-campaigns" class="cards"></div>
+      <div id="m-empty" class="empty hidden">Aucune campagne pour l'instant.<br>Crée ton premier tirage ou tes premiers tickets à gratter !</div>
+    </div>
+    <div id="camp-modal" class="modal hidden"><div class="card narrow wide">
+      <h3 id="cm-title">Nouveau tirage</h3>
+      <div id="cm-fields"></div>
+      <div class="row"><button class="btn btn-gold" id="cm-save">Créer</button><button class="btn btn-ghost" id="cm-cancel">Annuler</button></div>
+      <p class="err" id="cm-err"></p>
+    </div></div>
+  </section>
+
+  <!-- ===== COMMERÇANT : détail campagne ===== -->
+  <section id="view-campdetail" class="view hidden">
+    <header class="topbar"><button class="btn btn-ghost sm" data-go="#/m">← Mes campagnes</button><b id="cd-title"></b><span></span></header>
+    <div class="wrap" id="cd-body"></div>
+  </section>
+
+  <!-- ===== PUBLIC : page campagne ===== -->
+  <section id="view-public" class="view hidden">
+    <div class="hero small">
+      <div class="logo" id="pub-emoji">🎡</div>
+      <h1 id="pub-title"></h1>
+      <p class="tagline" id="pub-merchant"></p>
+      <p id="pub-desc" class="pub-desc"></p>
+    </div>
+    <div class="wrap" id="pub-body"></div>
+    <footer class="foot">Propulsé par TiragePro 🎡</footer>
+  </section>
+
+</div>
+<div id="toast" class="toast hidden"></div>
+<script src="/app.js"></script>
+</body>
+</html>
