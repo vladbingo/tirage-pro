@@ -218,4 +218,9 @@ describe('divers', () => {
     const html = await r.text();
     assert.ok(html.includes('Lance ton premier tirage'), 'guide commerçant présent');
   });
+  it('guide admin : créer son accès commerçant', async () => {
+    const r = await fetch(base + '/app.js');
+    const js = await r.text();
+    assert.ok(js.includes('Crée ton accès commerçant'), 'guide admin présent');
+  });
 });

@@ -284,7 +284,16 @@ async function vAdmin() {
           <button class="btn btn-ghost sm" data-edit="${m.id}">Modifier</button>
           <button class="btn btn-ghost sm" data-toggle="${m.id}">${m.active !== false ? 'Bloquer' : 'Activer'}</button>
           <button class="btn btn-danger sm" data-del="${m.id}">Supprimer</button>
-        </div></div>`).join('') || '<p class="muted">Aucun commerçant. Crée le premier accès !</p>';
+        </div></div>`).join('') || `
+      <div class="card guide">
+        <div style="font-size:44px">👋</div>
+        <h3 style="margin:10px 0 6px">Crée ton accès commerçant</h3>
+        <p class="muted" style="line-height:2">C'est avec le <b>compte commerçant</b> que tu lanceras tes tirages.<br>
+        1️⃣ Clique ci-dessous et crée ton accès<br>
+        2️⃣ Déconnecte-toi, puis reconnecte-toi avec cet accès<br>
+        3️⃣ Clique <b>🎡 Nouveau tirage</b> et lance ta roue !</p>
+        <button class="btn btn-gold big" id="guide-new-merchant">+ Créer mon accès commerçant</button>
+      </div>`;
     $('#admin-campaigns').innerHTML = cj.campaigns.map(c => `
       <div class="mcard"><h3>${c.type === 'raffle' ? '🎡' : '🎫'} ${esc(c.title)}</h3>
         <div class="muted small">${esc(c.merchantName)}</div>
@@ -294,6 +303,8 @@ async function vAdmin() {
   } catch (e) { toast(e.message); }
 
   $('#merchant-new-btn').onclick = () => { editingMerchant = null; openMerchantModal(); };
+  const gm = $('#guide-new-merchant');
+  if (gm) gm.onclick = () => { editingMerchant = null; openMerchantModal(); };
   $$('#merchant-list [data-edit]').forEach(b => b.onclick = () => { editingMerchant = b.dataset.edit; openMerchantModal(); });
   $$('#merchant-list [data-toggle]').forEach(b => b.onclick = async () => {
     try {
