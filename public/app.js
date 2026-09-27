@@ -252,7 +252,11 @@ async function vSetup() {
 }
 
 /* ---------- LOGIN ---------- */
-function vLogin() {
+async function vLogin() {
+  try {
+    const s = await (await fetch('/api/status')).json();
+    if (!s.setupDone) { location.hash = '#/setup'; return; }
+  } catch (e) {}
   show('#view-login');
   $('#login-btn').onclick = async () => {
     $('#login-err').textContent = '';
@@ -742,11 +746,5 @@ function showScratchCard(area, c, t) {
   } catch (e) {
     localStorage.removeItem('tp_user'); localStorage.removeItem('tp_token');
   }
-  try {
-    const s = await (await fetch('/api/status')).json();
-    if (!s.setupDone && (location.hash === '#/' || location.hash === '' || location.hash === '#')) {
-      location.hash = '#/setup';
-    }
-  } catch (e) {}
   route();
 })();
